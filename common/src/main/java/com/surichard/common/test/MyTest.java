@@ -1,4 +1,4 @@
-package common.test;
+package com.surichard.common.test;
 
 import java.time.LocalDate;
 

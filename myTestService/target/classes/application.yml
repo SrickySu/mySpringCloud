@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: myweb
+    
+server:
+  port: 8081    
