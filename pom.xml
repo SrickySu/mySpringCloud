@@ -10,6 +10,7 @@
 		<module>myCommon</module>
 		<module>myWeb</module>
 		<module>myEurekaServer</module>
+		<module>myService1</module>
 	</modules>
 
 	<properties>
@@ -92,10 +93,23 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>mySpringCloud</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<delimiters>
+						<delimit>$</delimit>
+					</delimiters>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
