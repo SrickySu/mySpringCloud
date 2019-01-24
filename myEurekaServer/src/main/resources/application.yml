@@ -4,13 +4,17 @@ server:
 spring:
   application:
     name:  myEurekaServer
+  profiles:
+    active: native
   cloud:
     config:
       server:
+        native:
+          search-locations: D:/eclipse-workspace/git/myConfigCenter/
         git:
           uri: https://github.com/SrickySu/myConfigCenter.git #GitHub上面的git仓库名字
-          username: SrickySu
-          password: ICQgithubg0913
+          username: 
+          password: 
 
 eureka:
   instance:
