@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.surichard.myService1.mapper.TimeZoneEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.surichard.myService1.entity.TimeZoneEntity" >
+    <id column="Time_zone_id" property="timeZoneId" jdbcType="INTEGER" />
+    <result column="Use_leap_seconds" property="useLeapSeconds" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Time_zone_id, Use_leap_seconds
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from time_zone
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from time_zone
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.surichard.myService1.entity.TimeZoneEntity" >
+    insert into time_zone (Time_zone_id, Use_leap_seconds)
+    values (#{timeZoneId,jdbcType=INTEGER}, #{useLeapSeconds,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.surichard.myService1.entity.TimeZoneEntity" >
+    insert into time_zone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeZoneId != null" >
+        Time_zone_id,
+      </if>
+      <if test="useLeapSeconds != null" >
+        Use_leap_seconds,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeZoneId != null" >
+        #{timeZoneId,jdbcType=INTEGER},
+      </if>
+      <if test="useLeapSeconds != null" >
+        #{useLeapSeconds,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.surichard.myService1.entity.TimeZoneEntity" >
+    update time_zone
+    <set >
+      <if test="useLeapSeconds != null" >
+        Use_leap_seconds = #{useLeapSeconds,jdbcType=CHAR},
+      </if>
+    </set>
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.surichard.myService1.entity.TimeZoneEntity" >
+    update time_zone
+    set Use_leap_seconds = #{useLeapSeconds,jdbcType=CHAR}
+    where Time_zone_id = #{timeZoneId,jdbcType=INTEGER}
+  </update>
+</mapper>
