@@ -1,13 +1,16 @@
 package com.surichard.myWeb.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 public class MyWeb {
 
-	@GetMapping(value = "/information")
-	public String getInformation() {
-		return "Good Job!";
+	@RequestMapping(value = "/information")
+	public String getInformation(Model model) {
+		model.addAttribute("title", "myTitle");
+		model.addAttribute("myName", "surichard");
+		return "home";
 	}
 }

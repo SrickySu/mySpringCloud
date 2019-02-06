@@ -40,7 +40,7 @@ public class MyService1Controller {
 
 	@GetMapping(value = "/setRedis")
 	public BaseResponse<String> setRedis(@RequestParam(name = "myName", required = false) String myName) {
-		stringRedisTemplate.opsForValue().set("myName", myName, 10, TimeUnit.SECONDS);
+		stringRedisTemplate.opsForValue().set("myName", myName, 60, TimeUnit.SECONDS);
 		return BaseResponse.succeed(ResultMessage.SUCCESS);
 	}
 
