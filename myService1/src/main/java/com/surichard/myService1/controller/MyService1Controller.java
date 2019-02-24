@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.surichard.myCommon.web.response.BaseResponse;
 import com.surichard.myCommon.web.result.ResultMessage;
 import com.surichard.myService1.entity.TimeZoneEntity;
+import com.surichard.myService1.service.QueueTestService;
 import com.surichard.myService1.service.TimeZoneService;
 
 @RestController
@@ -25,7 +26,9 @@ public class MyService1Controller {
 	private TimeZoneService timeZoneService;
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
-
+	@Autowired
+	private QueueTestService queueTestService;
+	
 	@Value(value = "${spring.application.name}")
 	private String applicationName;
 
@@ -48,6 +51,12 @@ public class MyService1Controller {
 	public BaseResponse<String> getRedis() {
 		String result = stringRedisTemplate.opsForValue().get("myName");
 		return BaseResponse.succeed(result);
+	}
+
+	@GetMapping(value = "/sendMessage")
+	public BaseResponse<String> sendMessage(@RequestParam(name = "message", required = true) String message) {
+		queueTestService.sendMessage(message);
+		return BaseResponse.succeed(ResultMessage.SUCCESS);
 	}
 
 }
