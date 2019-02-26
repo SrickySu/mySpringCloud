@@ -19,7 +19,8 @@ public class RabbitmqConfig {
 	@Value("${spring.rabbitmq.queue.testQueue}")
 	private String testQueue;
 	
-	private static final String TOPIC_EXCHANGE = "topicExchange";
+	@Value("${spring.rabbitmq.exchange.topic}")
+	private String TOPIC_EXCHANGE;
 
 	@Bean
 	public Exchange topicExchange() {
