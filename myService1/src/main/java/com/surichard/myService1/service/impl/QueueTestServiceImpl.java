@@ -20,7 +20,7 @@ public class QueueTestServiceImpl implements QueueTestService {
 	@Autowired
 	private Exchange topicExchange;
 	
-	@Value("${rabbitmq.routing_key.testKey}")
+	@Value("${spring.rabbitmq.routing_key.testKey}")
 	private String testRoutingKey;
 
 	@Override

@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitmqConfig {
 	
-	@Value("${rabbitmq.routing_key.testKey}")
+	@Value("${spring.rabbitmq.routing_key.testKey}")
 	private String testRoutingKey;
 
-	@Value("${rabbitmq.queue.testQueue}")
+	@Value("${spring.rabbitmq.queue.testQueue}")
 	private String testQueue;
 	
 	private static final String TOPIC_EXCHANGE = "topicExchange";

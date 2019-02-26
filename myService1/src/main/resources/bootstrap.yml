@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      name: myService1 #需要从github上读取的资源名称，注意没有yml后缀名
+      name: myService1,common #需要从github上读取的资源名称，注意没有yml后缀名
       profile: dev   #本次访问的配置项
       label: master   
       uri: http://localhost:7001  #本微服务启动后先去找7001号服务，通过SpringCloudConfig获取GitHub的服务地址

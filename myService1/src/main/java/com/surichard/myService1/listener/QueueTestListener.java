@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class QueueTestListener {
 	
-	@RabbitListener(queues = "${rabbitmq.queue.testQueue}")
+	@RabbitListener(queues = "${spring.rabbitmq.queue.testQueue}")
 	public void receiveMessage(Message message) {
 		log.info("receive a message from rabbitmq: {}", new String(message.getBody()));
 	}
