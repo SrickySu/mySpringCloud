@@ -26,14 +26,23 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
-                <version>3.0.0</version>
+                <version>${wagon-ssh.version}</version>
             </extension>
         </extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.5.9.RELEASE</version>
+				<version>${spring-boot.version}</version>
+				<executions>
+                    <execution>
+                    	<id>repackage</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -41,7 +50,7 @@
                 <version>1.0</version>
                 <executions>
                     <execution>
-                        <id>upload-deploy</id>
+                        <id>upload-script</id>
                         <!-- 运行package打包的同时运行upload-single和sshexec -->
                         <phase>package</phase>
                         <goals>
@@ -49,26 +58,27 @@
                             <goal>sshexec</goal>
                         </goals>
                         <configuration>
-                            <fromFile>target/mySpringCloud.jar</fromFile>
-                            <url>scp://user:password@localhost:port/home/mySpringCloud/jar</url>
+                        	<fromDir>${configuration.file.dir}</fromDir>
+                        	<includes>*.yml</includes>
+                            <url>scp://${remote.server.user}:${remote.server.password}@${remote.server.url}:${remote.server.port}/home/mySpringCloud/config</url>
                             <commands>
-                                <command>echo jar upload success</command>
+                                <command>echo script upload success</command>
                             </commands>
                             <displayCommandOutputs>true</displayCommandOutputs>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>upload-script</id>
+                        <id>upload-deploy</id>
                         <phase>package</phase>
                         <goals>
                             <goal>upload-single</goal>
                             <goal>sshexec</goal>
                         </goals>
                         <configuration>
-                            <fromFile>./*.yml</fromFile>
-                            <url>scp://user:password@localhost:port/home/mySpringCloud/config</url>
+                            <fromFile>target/${project.artifactId}-${project.version}.${project.packaging}</fromFile>
+                            <url>scp://${remote.server.user}:${remote.server.password}@${remote.server.url}:${remote.server.port}/home/mySpringCloud/jar</url>
                             <commands>
-                                <command>echo script upload success</command>
+                                <command>echo jar upload success</command>
                             </commands>
                             <displayCommandOutputs>true</displayCommandOutputs>
                         </configuration>
