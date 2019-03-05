@@ -69,7 +69,7 @@
                         </goals>
                         <configuration>
                             <fromFile>target/${project.artifactId}-${project.version}.${project.packaging}</fromFile>
-                            <url>scp://${remote.server.user}:${remote.server.password}@${remote.server.url}:${remote.server.port}/home/mySpringCloud/jar</url>
+                            <url>scp://${remote.server.user}:${remote.server.password}@${remote.server.url}:${remote.server.port}${remote.server.jar.dir}</url>
                             <commands>
                                 <command>echo jar upload success</command>
                             </commands>

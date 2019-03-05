@@ -10,7 +10,7 @@ spring:
     config:
       server:
         native:
-          search-locations: D:/eclipse-workspace/git/myConfigCenter/
+          search-locations: /home/mySpringCloud/config/
         git:
           uri: https://github.com/SrickySu/myConfigCenter.git #GitHub上面的git仓库名字
           username: 

@@ -11,6 +11,6 @@ public class MyWeb {
 	public String getInformation(Model model) {
 		model.addAttribute("title", "myTitle");
 		model.addAttribute("myName", "surichard");
-		return "/home";
+		return "home";
 	}
 }

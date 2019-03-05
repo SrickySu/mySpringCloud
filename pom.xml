@@ -29,6 +29,8 @@
 		<remote.server.port></remote.server.port>
 		<remote.server.user>root</remote.server.user>
 		<remote.server.password></remote.server.password>
+		<remote.server.config.dir>/home/mySpringCloud/config</remote.server.config.dir>
+		<remote.server.jar.dir>/home/mySpringCloud/jar</remote.server.jar.dir>
 		<configuration.file.dir></configuration.file.dir>
 	</properties>
 
